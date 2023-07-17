@@ -1,0 +1,9 @@
+module.exports={
+    PRODUCT_COLLECTION:'products',
+    DETAILS_COLLECTION:'details',
+    USER_COLLECTION:'user',
+    CART_COLLECTION:'cart',
+    PRIVATE_COLLECTION:'private',
+    PRISPACE_COLLECTION:'prispace',
+    PRIVATE_CHAT:'chat'
+}

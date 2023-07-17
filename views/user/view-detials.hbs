@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat Website</title>
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+  
+  <style>
+    /* CSS for the chat layout */
+    body {
+      background-color: #021316;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .chat-container {
+      max-width: 200px;
+      margin: 0 auto;
+      padding: 2px;
+    }
+    
+    .message {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    
+    .message .avatar {
+      flex: 10px 10px 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    
+    .message .content {
+      background-color: #104b62;
+      max-width: 300px;
+      padding: 5px;
+      border-radius: 10px;
+      color: #325f6d;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      flex: 1 0 100%;
+    }
+    
+    .message .content p {
+      margin: 2px;
+    }
+    
+    @media (min-width: 600px) {
+      .message .content {
+        flex: 0 0 calc(100% - 60px);
+      }
+    }
+    
+    .profile {
+      text-align: center;
+    }
+    
+    .profile-image {
+      margin-top: 5px;
+      display: inline-block;
+      position: relative;
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      overflow: hidden;
+      background-color: #000814;
+      cursor: pointer;
+    }
+    
+    .profile-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .upload-btn {
+      display: none;
+      position: fixed;
+      right: 55px;
+      bottom: 1px;
+    }
+    
+    .upload-btn input[type="file"] {
+      display: none;
+    }
+    
+    .fixbtn {
+      position: fixed;
+      right: 15px;
+      bottom: 7px;
+      border-radius: 50%;
+    }
+    
+    .pop {
+      position: fixed;
+      right: 55px;
+      bottom: 2px;
+      border-radius: 50%;
+    }
+    
+    .fixbtn img {
+      width: 30px;
+      border-radius: 50%;
+    }
+    
+    @media (max-width: 768px) {
+      .fixbtn {
+        max-width: 150px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .fixbtn {
+        max-width: 100px;
+      }
+    }
+    
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #031621;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .text {
+      border-radius: 8px 3px 3px 8px;
+      border: none;
+      color: #fff;
+      background-color: #01070c;
+      flex: 1;
+     padding-left: 10px;
+      margin-right: 10px;
+      font-size: 14px;
+      max-width: 100%;
+    }
+    
+    .send-btn {
+      background-color: #042129;
+      border: none;
+      color: #fff;
+      border-radius: 50%;
+     
+      cursor: pointer;
+    }
+    
+    .send-btn img {
+      width: 25px;
+      height: 25px;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 600px) {
+      .chat-container {
+        max-width: 100%;
+        padding: 10px;
+      }
+      
+      .message .avatar {
+        margin-right: 5px;
+      }
+      
+      .message .content {
+        padding: 10px;
+      }
+      
+      .footer {
+        padding: 5px;
+      }
+      
+      .text {
+        font-size: 12px;
+      }
+      
+      .send-btn img {
+        width: 10px;
+        
+      }
+      .time {
+        
+       float: left;
+      margin-left: 93%;
+        padding: 2px;
+        color: rgb(218, 218, 218);
+        font-size: 8px;
+        
+      }
+    }
+  </style>
+</head>
+<div style="width: 100%; height: 60px;">
+  
+</div>
+<body>
+  
+  <div id="detailsContainer" style="background-color: #031621; width: 100%; height: auto;">
+     
+    
+    
+
+
+
+    {{#each details}}
+    <div class="chat-container">
+      <div class="message">
+       <div class="avatar">
+  <a type="button" data-toggle="modal" data-target="#exampleModal{{this.userId}}_{{this.userName}}">
+    <img class="card-img-top" src='/product-images/{{this.userId}}.jpg' onerror="src='/product-images/USER.jpg'"  style="width: 20px; border-radius: 10px;">
+  </a>
+  <div class="modal fade" id="exampleModal{{this.userId}}_{{this.userName}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered modal-dialog-zoom" role="document">
+      <div class="modal-content" style="width: 70%; height: auto; margin-left: 15%;">
+        <div class="modal-body" style="padding: 0;">
+          <img class="card-img-top" src='/product-images/{{this.userId}}.jpg' onerror="src='/product-images/USER.jpg'" style="width: 100%; height: 100%;">
+          <div style="background-color: rgb(3, 6, 30); height: 20px; margin: 0;">
+            <a href="/private-chat/{{this.userId}}" type="button" class="btn btn-primary" style="width: 100%;" >chat with {{this.userName}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+        <div class="content" >
+          <div style="">
+            <p style="float: left; color: rgb(178, 241, 255); font-size: x-small; font-weight: bold; margin-right: 5px;">{{this.userName}}</p>
+            {{#if this.send}}
+            <a  onclick="deleteDetails('{{this._id}}')">
+              <img src="/product-images/delete.png" alt="" style="width: 10px; border-radius: 60%; float: left; margin-left: 215px; padding-bottom: 5px; ">
+            </a>
+           {{/if}}
+          </div>
+          {{#if this.image}}
+          <img src='/product-images/{{this._id}}.jpg' alt="Image" style="width: 280px; border-radius: 5px;">
+          {{/if}}
+          
+            <div style="float: left; width: 100%;"><p style="color: rgb(245, 245, 245); font-size: small;">{{this.Text}}</p></div>
+            <div class="time">
+          <p style=" text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); text-align: end;">{{this.time}}</p>
+          </div>
+        </div>
+      </div>
+      <!-- Add more messages here -->
+    </div>
+    
+    {{/each}}
+
+    
+
+  </div>
+  <div style="height: 40px; ">
+
+  </div>
+
+  <div class="footer">
+    <form id="detailsForm" enctype="multipart/form-data" style="width: 100%; display: flex;">
+        <input class="text" type="text" class="form-control" name="Text" placeholder="Enter something..." style="height: 25px; margin-top: 5px;">
+        <label for="profile-pic" class="profile-image">
+            <img src="/product-images/img.png" alt="Profile Picture" id="imageid" style="width: 18px; height: 18px;">
+        </label>
+        <input type="file" name="image" id="profile-pic" accept="image/*" class="upload-btn" onchange="viewimg(event)">
+        <input type="text" name="userName" value="{{user.Name}}" hidden>
+        <button type="submit" style="background-color: #021316; border: none; background: none;">
+            <img src="/product-images/send.png" alt="Send" style="width: 20px;">
+        </button>
+    </form>
+</div>
+
+  
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+  function viewimg(event) {
+    document.getElementById('imageid').src = URL.createObjectURL(event.target.files[0]);
+  }
+
+  // Create a Socket.IO client instance
+  const socket = io();
+
+  // Handle incoming chat messages
+  socket.on('chatMessage', (newDetail) => {
+    // Create a new HTML element for the new detail
+    var newDetailElement = document.createElement('div');
+    newDetailElement.classList.add('chat-container');
+    newDetailElement.innerHTML = 
+      ` <div class="message">
+          <div class="avatar">
+            <a type="button" data-toggle="modal" data-target="#exampleModal${newDetail.userId}_${newDetail.userName}">
+              <img class="card-img-top" src="/product-images/${newDetail.userId}.jpg" onerror="src='/product-images/USER.jpg'"  style="width: 20px; border-radius: 10px;">
+            </a>
+            <div class="modal fade" id="exampleModal${newDetail.userId}_${newDetail.userName}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-zoom" role="document">
+                <div class="modal-content" style="width: 70%; height: auto; margin-left: 15%;">
+                  <div class="modal-body" style="padding: 0;">
+                    <img class="card-img-top" src="/product-images/${newDetail.userId}.jpg" style="width: 100%; height: 100%;">
+                    <div style="background-color: rgb(3, 6, 30); height: 20px; margin: 0;">
+                      <a href="/private-chat/${newDetail.userId}" type="button" class="btn btn-primary" style="width: 100%;">chat with ${newDetail.userName}</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content">
+            <div style="">
+              <p style="float: left; color: rgb(178, 241, 255); font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-size: x-small; font-weight: bold; margin-right: 5px;">${newDetail.userName}</p>
+              ${newDetail.send ? `
+              <a onclick="deleteDetails('${newDetail._id}')">
+                <img src="/product-images/delete.png" alt="" style="width: 10px; border-radius: 60%; float: left; margin-left: 215px; padding-bottom: 5px; ">
+              </a> `: ''}
+            </div>
+            ${newDetail.image ? `
+            <img src="/product-images/${newDetail._id}.jpg" alt="Image" style="width: 280px; border-radius: 5px;">
+            ` : ''}
+            <div style="float: left; width: 100%;">
+              <p style=" color: rgb(245, 245, 245); font-size: small;">${newDetail.Text}</p>
+            </div>
+            <div class="time">
+              <p style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); text-align: end;">${newDetail.time}</p>
+            </div>
+          </div>
+        </div>
+      `;
+
+    // Find the detailsContainer element
+    var detailsContainer = document.getElementById('detailsContainer');
+
+    // Append the new detail element to detailsContainer
+    detailsContainer.insertBefore(newDetailElement, detailsContainer.firstChild);
+  });
+
+  document.getElementById('detailsForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent default form submission
+
+    var formData = new FormData(this); // Create FormData object
+
+    fetch('/add-details', {
+      method: 'POST',
+      body: formData
+    })
+      .then(function (response) {
+        if (response.ok) {
+          console.log('Form data submitted successfully');
+          return response.text(); // Return the response as text
+        } else {
+          console.error('Error submitting form data. Status:', response.status);
+        }
+      })
+      .then(function (data) {
+        console.log(data);
+
+        // Parse the response data to extract the details
+        var newDetail = JSON.parse(data);
+
+        // Emit the new detail to the server via Socket.IO
+        socket.emit('chatMessage', newDetail);
+      
+      })
+      .catch(function (error) {
+        console.error('Error submitting form data:', error);
+      })
+      .finally(function(){
+          // Reset the form fields
+        document.getElementById('detailsForm').reset();
+      })
+  });
+</script>
+
+
+   <script>
+      function deleteDetails(dataId){
+    $.ajax({
+        url:'/delete-data/'+dataId,
+        method:'get',
+        success:()=>{
+         
+           $('#'+dataId).remove()
+         
+           
+           
+        }
+    })
+}
+ </script>
+<script>
+    function chat(userId,userName){
+        
+      $.ajax({
+            url:'/private-chat',
+            data:{
+                userId:userId,
+                userName:userName
+            },
+            method:'get',
+            success:(response)=>{
+            
+            }
+
+        })
+        
+    } 
+ </script>
+ 
+
+ 
+</body>
+</html>
+
+  {{!-- newDetailElement.innerHTML = 
+        ` <div class="message">
+          <div class="avatar">
+            <a type="button" data-toggle="modal" data-target="#exampleModal${newDetail.userId}_${newDetail.userName}">
+              <img class="card-img-top" src="/product-images/${newDetail.userId}.jpg" alt="Avatar" style="width: 20px; border-radius: 10px;">
+            </a>
+            <div class="modal fade" id="exampleModal${newDetail.userId}_${newDetail.userName}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-zoom" role="document">
+                <div class="modal-content" style="width: 70%; height: auto; margin-left: 15%;">
+                  <div class="modal-body" style="padding: 0;">
+                    <img class="card-img-top" src="/product-images/${newDetail.userId}.jpg" style="width: 100%; height: 100%;">
+                    <div style="background-color: rgb(3, 6, 30); height: 20px; margin: 0;">
+                      <a href="/private-chat/${newDetail.userId}" type="button" class="btn btn-primary" style="width: 100%;">chat with ${newDetail.userName}</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content">
+            <div style="">
+              <p style="float: left; color: rgb(178, 241, 255); font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-size: x-small; font-weight: bold; margin-right: 5px;">${newDetail.userName}</p>
+              ${newDetail.send ? `
+              <a onclick="deleteDetails('${newDetail._id}')">
+                <img src="/product-images/delete.png" alt="" style="width: 10px; border-radius: 60%; float: left; margin-left: 215px; padding-bottom: 5px; ">
+              </a> `: ''}
+            </div>
+            ${newDetail.image ? `
+            <img src="/product-images/${newDetail._id}.jpg" alt="Image" style="width: 280px; border-radius: 5px;">
+            ` : ''}
+            <div style="float: left; width: 100%;">
+              <p style="font-family: cursive; color: rgb(245, 245, 245); font-size: small;">${newDetail.Text}</p>
+            </div>
+            <div class="time">
+              <p style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); text-align: end;">${newDetail.time}</p>
+            </div>
+          </div>
+        </div>
+      `; --}}

@@ -1,0 +1,288 @@
+
+<!--
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat Website</title>
+  
+</head>
+</div>
+
+<div style="background-color: #f5e6b5; width: 100%;height: auto;">
+   Button trigger modal  
+  <button type="button" class="btn btn-primary fixbtn" data-toggle="modal" data-target="#exampleModalCenter"> > </button> 
+  Modal  
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"> 
+    <div class="modal-dialog modal-dialog-centered" role="document"> 
+
+
+      <div class="modal-content" >
+         
+            <div class="modal-body" style="padding: 0%;"> 
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> 
+              <form action="/add-private" method="post" enctype="multipart/form-data">
+  
+    <div class="form-group">
+  
+    <div class="mess">
+     
+      <div class="content">
+        
+       
+
+         <input type="text" name="userId" id="" value="{{user._id}}" hidden> 
+          <input type="text" name="userName" id="" value="{{user.Name}}" hidden> 
+        <div class="profile">
+      <label for="profile-pic" class="profile-image">
+        <img src="/product-images/" alt="Profile Picture" id="imageid">
+      </label>
+      <input type="file" name="image" id="profile-pic" accept="image/*" class="upload-btn" onchange="viewimg(event)">
+       <input type="text" class="form-control" name="Text" placeholder="Enter something...">
+    </div>
+      <button type="submit" class="btn btn-primary">~</button>
+      </div>
+    </div>
+  
+  </div>
+
+</form>
+
+              
+               </div>
+             
+               </div>
+               
+                </div> 
+                </div>
+
+
+
+                
+{{#each private}}
+<body>
+  <div class="chat-container">
+    <div class="message">
+      <div class="avatar">
+       <td> <img class="card-img-top"
+      src='/product-images/{{this.details.userId}}.jpg'
+     alt="Avatar" style="width: 20px; border-radius: 10px;"></td> 
+     <td><p style="color: rgb(2, 2, 177);font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-size: small;font-weight: bold;">{{this.details.userName}}</p></td>
+      </div>
+      <div class="content">
+        <p style="font-family: cursive;">{{this.details.Text}} </p>
+        
+        <img  src='/product-images/{{this.details._id}}.jpg' alt="Image" style="width: 400px;">
+      </div>
+    </div>
+    
+     Add more messages here 
+    
+  </div>
+</body>
+
+{{/each}}
+
+<style>
+    /* CSS for the chat layout */
+    body {
+      background-color: #f9ffa6;
+      font-family: Arial, sans-serif;
+    }
+    
+    .chat-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .message {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    
+    .message .avatar {
+      flex: 0 0 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    
+    .message .content {
+      background-color: #ffe081;
+      padding: 15px;
+      border-radius: 10px;
+      color: #030f13;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      flex: 1 0 100%;
+    }
+    
+    .message .content p {
+      margin: 5px;
+    }
+    
+    @media (min-width: 600px) {
+      .message .content {
+        flex: 0 0 calc(100% - 60px);
+      }
+    }
+     .mess {
+      display: flex;
+      flex-wrap: wrap;
+      
+    }
+    .mess .content {
+      
+      width: 100px;
+      height: 250px;
+      border-radius: 10px;
+      color: #030f13;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      flex: 1 0 100%;
+    }
+     .profile {
+      text-align: center;
+    }
+    
+    .profile-image {
+      display: inline-block;
+      position: relative;
+      width: 420px;
+      height: 210px;
+      border-radius: 5%;
+      overflow: hidden;
+      background-color: #88bcff;
+      cursor: pointer;
+    }
+    
+    .profile-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .upload-btn {
+      display: none;
+    }
+    
+    .upload-btn input[type="file"] {
+      display: none;
+    }
+     .fixbtn {
+      position: fixed;
+      right: 15px;
+      bottom: 7px;
+      
+    }
+    @media(max-width: 768px){
+      .fixbtn{
+        max-width: 150px;
+      }
+    }
+     @media(max-width: 480px){
+      .fixbtn{
+        max-width: 100px;
+
+      }
+    }
+  </style>
+</html> 
+  <script>
+    function viewimg(event){
+        document.getElementById('imageid').src=URL.createObjectURL(event.target.files[0])
+    }
+</script>
+
+-->
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Profile Page</title>
+  <style>
+    body {
+      background-color: #021316;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .profile {
+      text-align: center;
+      margin-bottom: 30px;
+       width: 200px;
+      height: 200px;
+      
+      display: block;
+      margin: 0 auto;
+    }
+    
+    .profile-image {
+      text-align: center;
+      margin-bottom: 30px;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      border: 3px solid #0099f7d6;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+      display: block;
+      margin: 0 auto;
+    }
+    
+    .name {
+      text-align: center;
+      margin-top: 1px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      grid-gap: 10px;
+      margin-top: 8px;
+    }
+    
+    .image-grid img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+     box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+    }
+  </style>
+
+</head>
+ 
+<body>
+  <div class="container" style="padding-top: 65px;">
+    <div class="profile">
+
+
+       <img 
+ src="/product-images/{{user._id}}.jpg"  onerror="src='/product-images/USER.jpg'"  alt="Profile Image" class="profile-image">
+      <div class="name">
+         <p style="padding: 8px;">{{user.Name}} </p>
+      </div>
+      
+    </div>
+   
+    <div class="image-grid" >
+      {{#each private}}
+      <img  src='/product-images/{{this.details._id}}.jpg'  alt="Image" >
+      {{/each}}
+    </div>
+    
+  </div>
+</body>
+
+</html>

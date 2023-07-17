@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Signup</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+  <style>
+    /* Custom CSS */
+    body {
+      font-family: 'Poppins', sans-serif;
+        background-image: url('/product-images/background.jpg');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: repeat-y;
+    }
+
+    .form-container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow:0px 0px 50px 50px rgba(0, 0, 0, 0.5);
+      opacity: 0.9;
+    }
+
+    .form-container h5 {
+      font-weight: bold;
+      color: #0b0230;
+      text-align: center;
+    }
+
+    .profile {
+      text-align: center;
+    }
+
+    .profile-image {
+      display: inline-block;
+      position: relative;
+      margin-left: 27%;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: #e9ebee;
+      cursor: pointer;
+    }
+
+    .profile-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .upload-btn input[type="file"] {
+      display: none;
+      
+    }
+
+    .form-group label {
+      font-weight: bold;
+    }
+
+    .btn-primary {
+      background-color: #5c5757;
+      color: #ffffff;
+      border: none;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-text {
+      color: #5c5757;
+    }
+    .btn-info {
+      background-color: #0062b9;
+      color: #ffffff;
+      border: none;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+
+    .btn-info:hover {
+      background-color: #ffffff;
+      border: 1px solid #100386;
+      color: #1400c9;
+    }
+
+    .login-link {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      color: #5c5757;
+      font-weight: bold;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .form-container {
+        margin: 20px;
+        padding: 15px;
+      }
+      .profile-image {
+        width: 120px;
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <h5>Create a New Account</h5>
+      <form action="/signup" method="post" enctype="multipart/form-data">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="profile-pic" class="profile-image">
+                <img src="/product-images/adduser.png" alt="Profile Picture" id="imageid">
+                <input type="file" name="image" id="profile-pic" accept="image/*" class="upload-btn" onchange="viewimg(event)">
+              </label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="Name">Name</label>
+              <input type="text" class="form-control" name="Name" id="Name" placeholder="Enter Name">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" name="Email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              <small id="emailHelp" class="form-text">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" name="Password" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            
+            <button type="submit" class="btn btn-info">Signup</button>
+          </div>
+          <a href="/login" class="login-link">Already have an account?</a>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+
+  <script>
+    function viewimg(event) {
+      document.getElementById('imageid').src = URL.createObjectURL(event.target.files[0]);
+    }
+  </script>
+</body>
+</html>
