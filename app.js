@@ -92,8 +92,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 // Start the server
- const port = 5000;
+  const port = process.env.PORT || 5000;
   server.listen(port, () => {
-     console.log('Server is up and running on port ${port}'); });
+     console.log(`Server is up and running on port ${port}`); });
 
 module.exports = app;
