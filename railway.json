@@ -10,9 +10,9 @@
       }
     },
     "scripts": {
-      "start": "node app.js"
+      "start": "npm start"
     },
     "secrets": {
-      "mongo": "your-actual-mongodb-connection-string"
+      "mongo": "mongodb+srv://irshadmglm:Irshad8187@cluster0.8rjsw3n.mongodb.net/?retryWrites=true&w=majority"
     }
   }
