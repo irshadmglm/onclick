@@ -1,52 +1,43 @@
-const { MongoClient } = require('mongodb');
+const {MongoClient}=require('mongodb');
 
-const state = {
-  db: null,
+
+const state={
+    db: null,
 };
 
-// Function to establish MongoDB connection
-const connect = async (cb) => {
-  try {
-    let url;
 
-    if (process.env.NODE_ENV === 'production') {
-      // For Railway deployment, use the environment variable provided by Railway
-      url = process.env.MONGODB_URI;
-    } else {
-      // For local development, use the local MongoDB URL
-      const localUrl = 'mongodb://127.0.0.1:27017';
-      const dbName = 'onclick';
-      url =` ${localUrl}/${dbName}`;
+    //mongodb  connection string
+   // const url='mongodb://127.0.0.1:27017'
+   const url=process.env.DATABASE_URL;
+    const dbName='onclick'
+
+    //create a new mongodb clint object
+    const client= new MongoClient(url);
+
+    //function to establish mongodb connection
+    const connect = async(cb) =>{
+        try{
+            //connecting to mongodb
+            await client.connect();
+            //setting up database name to the connected client
+            const db =client.db(dbName);
+            //setting up database name to the state
+            state.db=db;
+            //callback aftet connecting
+            return cb();
+            
+        } catch(err){
+            //callback when an error accurs
+            return cb(err);
+        }
+    }
+    //function to get the database instance
+    const get = ()=> state.db;
+
+    //exporting functions
+    module.exports={
+        connect,
+        get,
     }
 
-    // Connect to MongoDB
-    const client = new MongoClient(url, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-
-    // Connecting to MongoDB
-    await client.connect();
-
-    // Setting up the database name to the connected client
-    const db = client.db();
-
-    // Setting up the database name to the state
-    state.db = db;
-
-    // Callback after connecting
-    return cb();
-  } catch (err) {
-    // Callback when an error occurs
-    return cb(err);
-  }
-};
-
-// Function to get the database instance
-const get = () => state.db;
-
-// Exporting functions
-module.exports = {
-  connect,
-  get,
-};
+  
