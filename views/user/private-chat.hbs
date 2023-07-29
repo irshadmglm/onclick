@@ -310,7 +310,7 @@
   const socket = io();
 
   // Handle incoming chat messages
-  socket.on('primessage', (newDetail) => {
+  socket.on('prirecevemessage', (newDetail) => {
     console.log(newDetail);
     // Create a new HTML element for the new detail
     var newDetailElement = document.createElement('div');
@@ -364,7 +364,7 @@
     .then(function (data) {
       console.log(data);
       // Emit the new detail to the server via Socket.IO
-      socket.emit('primessage', { senderId, receiverId, message: data });
+      socket.emit('prisendmessage', { senderId, receiverId, message: data });
     })
     .catch(function (error) {
       console.error('Error processing private chat:', error);
