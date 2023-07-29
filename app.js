@@ -4,14 +4,19 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var http=require('http')
+var dotenv =require('dotenv').config();
 
 var socketIO=require('socket.io')
 var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
 const {engine : hbs }=require("express-handlebars")
+
+const dbUrl=process.env.DATABASE_URL;
+const apiKey=process.env.API_KEY;
+const debugMode=process.env.DEBUG === 'true';
 var app = express();
 var server =http.createServer(app)
-var io=  socketIO(server) || socketIO(app)
+var io=socketIO(server)
 const fileUpload=require('express-fileupload')
 var db=require('./config/connection')
 var session=require('express-session')
@@ -28,11 +33,11 @@ app.use(fileUpload())
 
 app.use(session({secret:"anime",resave:false,saveUninitialized:true,cookie:{maxAge:6000000}}))
 app.use('/product-images', express.static(path.join(__dirname, 'product-images')));
-db.connect((err)=>{
-  if(err) console.log("connection error"+err );
- else console.log("database connected to port 27017");
+// db.connect((err)=>{
+//   if(err) console.log("connection error"+err );
+//  else console.log("database connected to port 27017");
   
-})
+// })
 const publicChatSockets = {};
 io.on('connection', (socket) => {
   console.log('New WebSocket connection');
@@ -59,9 +64,9 @@ io.on('connection', (socket) => {
   });
 
   // Handle private chat messages
-  socket.on('primessage', ({ senderId, receiverId, message }) => {
+  socket.on('prisendmessage', ({ senderId, receiverId, message }) => {
     const roomId = `${senderId}_${receiverId}`;
-    io.to(roomId).emit('primessage', message);
+    io.to(roomId).emit('prirecevemessage', message);
   });
 
   // Handle private chat disconnection
@@ -92,7 +97,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 // Start the server
-  const port = process.env.PORT || 5000;
+ const port = 5000;
   server.listen(port, () => {
      console.log(`Server is up and running on port ${port}`); });
 
