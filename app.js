@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var http=require('http')
-
+var dotenv =require('dotenv').config();
 
 var socketIO=require('socket.io')
 var userRouter = require('./routes/user');
@@ -97,7 +97,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 // Start the server
- const port =process.env.PORT || 5000;
+ const port =5000;
   server.listen(port, () => {
      console.log(`Server is up and running on port ${port}`); });
 
