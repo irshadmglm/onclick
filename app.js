@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var http=require('http')
-var dotenv =require('dotenv').config();
+
 
 var socketIO=require('socket.io')
 var userRouter = require('./routes/user');
