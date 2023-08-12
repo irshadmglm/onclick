@@ -33,11 +33,11 @@ app.use(fileUpload())
 
 app.use(session({secret:"anime",resave:false,saveUninitialized:true,cookie:{maxAge:6000000}}))
 app.use('/product-images', express.static(path.join(__dirname, 'product-images')));
-// db.connect((err)=>{
-//   if(err) console.log("connection error"+err );
-//  else console.log("database connected to port 27017");
+db.connect((err)=>{
+  if(err) console.log("connection error"+err );
+ else console.log("database connected to port 27017");
   
-// })
+ })
 const publicChatSockets = {};
 io.on('connection', (socket) => {
   console.log('New WebSocket connection');
@@ -97,7 +97,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 // Start the server
- const port = 5000;
+ const port =process.env.PORT || 5000;
   server.listen(port, () => {
      console.log(`Server is up and running on port ${port}`); });
 
