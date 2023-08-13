@@ -21,6 +21,7 @@
     "http-errors": "~1.6.3",
     "mongodb": "^5.5.0",
     "morgan": "~1.9.1",
-    "socket.io": "^4.7.1"
+    "socket.io": "^4.7.1",
+    "connect-redis": "^5.1.0"
   }
 }
